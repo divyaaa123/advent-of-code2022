@@ -38,45 +38,30 @@ using namespace std;
  * |5.| INT_MIN    | Minimum value int               |-2,147,483,648 (10^10)
 */
 
-vector<int> top( 3 );
-
-void addMax( int newVal ) {
-  // find min index
-  int minIdx = 0;
-  for ( int i = 1; i < 3; i++ )
-    if ( top[ i ] < top[ minIdx ] )
-      minIdx = i;
-  
-  // see if newVal is big enough
-  if ( newVal > top[ minIdx ] )
-    top[ minIdx ] = newVal;
-}
-
 void solve(int test_case)
 {
-  string line;
-  int maxSoFar = 0;
-  while ( getline( cin, line ) ) {
-    // cout << "line = " << line << endl;
-    if ( line.empty() ) {
-    //   cout << maxSoFar << endl;
-      addMax( maxSoFar );
-      maxSoFar = 0;
-      continue;
-    }
 
-    int newVal;
-    sscanf( line.c_str(), "%d", &newVal );
-    maxSoFar += newVal;
-  }
-  addMax( maxSoFar );
-
-//   for ( int i = 0; i < 3; i++ )
-//     cout << i << ": " << top[ i ] << endl;
+    char opponent, res;
+    int score=0;
     
-  cout << top[ 0 ] + top[ 1 ] + top[ 2 ] << endl;
-}
-
+    while(cin>>opponent>>res){
+      int opp =0, ress=0;
+      opp= (opponent-'A');
+    ress=(res-'X');
+    int elf=0;
+    if(ress==0){
+      ress=(opp+2)%3+0;
+    }
+    else if(ress==1){
+      ress=opp+3;
+    }
+    else{
+      ress=(opp+1)%3+6;
+    }
+    score+=(ress+1);
+  }
+      cout<<score;
+  }
 int main()
 {
 #ifndef ONLINE_JUDGE
@@ -86,7 +71,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int t, t1 = 0;
-    cin >> t;
+    t=1;
     while (t1 < t)
     {
         solve(t1 + 1);
